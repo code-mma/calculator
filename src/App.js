@@ -1,25 +1,72 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function add(a,b) {
+  return a + b;
 }
 
-export default App;
+function subtract(a,b) {
+  return a - b;
+}
+
+function multiply(a,b) {
+  return a * b;
+}
+
+function divide(a,b) {
+  return a / b;
+}
+
+class Square extends React.Component {
+  render() {
+    return (
+      <button className="square">
+        {this.props.value}
+      </button>
+    );
+  };
+};
+
+class Main extends React.Component {
+  renderSquare(i) {
+    return <Square value={i} />;
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="display-container">
+          
+        </div>
+        <div className="button-container">
+          <div className="row">
+            {this.renderSquare(1)}
+            {this.renderSquare(2)}
+            {this.renderSquare(3)}
+            {this.renderSquare('+')}
+          </div>
+          <div className="row">
+            {this.renderSquare(4)}
+            {this.renderSquare(5)}
+            {this.renderSquare(6)}
+            {this.renderSquare('-')}
+          </div>
+          <div className="row">
+            {this.renderSquare(7)}
+            {this.renderSquare(8)}
+            {this.renderSquare(9)}
+            {this.renderSquare('x')}
+          </div>
+          <div className="row">
+            {this.renderSquare('Clear')}
+            {this.renderSquare(0)}
+            {this.renderSquare('=')}
+            {this.renderSquare('÷')}
+          </div>
+        </div>
+      </div>
+    );
+  };
+};
+
+export default Main;

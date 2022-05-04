@@ -1,40 +1,49 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
-h1 {
-  text-align: right;
-  margin: 10px;
-}
-
-.square {
-  border: 1px solid rgb(0, 0, 0);
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 100px;
-  width: 100px;
-  margin: -1px;
-  padding: 0;
-  text-align: center;
-}
-
-.button-container {
+.wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .display-container {
   border: 1px solid rgb(0, 0, 0);
   height: 60px;
-  width: 392px;
-  margin: -1px;
-  padding: 0;
+  width: 240px;
+}
+
+h1 {
+  font-size: xx-large;
+  text-align: right;
+  margin: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
 
 .row {
-  clear: both;
-  display: table;
+  display: flex;
+  justify-content: center;
 }
+
+.square {
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+  padding: 0;
+  text-align: center;
+}
+

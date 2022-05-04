@@ -10,11 +10,25 @@ class Display extends React.Component {
 };
 
 class Square extends React.Component {
+
+  checkButtonType = () => {
+    if (this.props.value == 'C') {
+      return 'danger';
+    }
+    else if (this.props.value == '=') {
+      return 'success';
+    }
+    else if (typeof(this.props.value) == 'number') {
+      return 'primary';
+    }
+    else return 'warning';
+  };
+
   render() {
     return (
       <button 
         type="button"
-        className={'btn btn-primary square ' + this.props.value} 
+        className={'square btn btn-' + this.checkButtonType() + ' ' + this.props.value} 
         onClick={() => this.props.onClick()}>
           {this.props.value}
       </button>
@@ -48,7 +62,7 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <div className="display-container">
           {this.renderDisplay()}
         </div>

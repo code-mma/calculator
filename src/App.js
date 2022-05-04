@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 
 class Display extends React.Component {
@@ -13,10 +13,10 @@ class Square extends React.Component {
   render() {
     return (
       <button 
-        className={'square ' + this.props.value} 
-        onClick={() => this.props.onClick()}
-      >
-        {this.props.value}
+        type="button"
+        className={'btn btn-primary square ' + this.props.value} 
+        onClick={() => this.props.onClick()}>
+          {this.props.value}
       </button>
     );
   };
@@ -26,14 +26,17 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "0",
+      value: null,
       displayValue: null,
     };
   }
 
   handleClick(i) {
-    this.setState( { displayValue: i });
+    this.setState( { displayValue: this.state.displayValue + i });
+    this.setState( { value: i });
   }
+
+  
 
   renderSquare(i) {
     return <Square value={i} onClick={() => this.handleClick(i)}/>;

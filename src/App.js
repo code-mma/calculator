@@ -1,42 +1,50 @@
 import React from 'react';
 import './App.css';
 
-function add(a,b) {
-  return a + b;
-}
+class Display extends React.Component {
 
-function subtract(a,b) {
-  return a - b;
-}
-
-function multiply(a,b) {
-  return a * b;
-}
-
-function divide(a,b) {
-  return a / b;
-}
-
-class Square extends React.Component {
   render() {
     return (
-      <button className="square">
-        {this.props.value}
+      <h1>Yow</h1>
+    );
+  };
+};
+
+class Square extends React.Component {
+  state = {
+    value: this.props.value,
+    expression: []
+  }
+
+  handleClick = () => {
+    this.state.expression.push(this.state.value);
+  }
+
+  render() {
+    return (
+      <button className={'square ' + this.state.value} onClick={this.handleClick}>
+        {this.state.value}
       </button>
     );
   };
 };
 
 class Main extends React.Component {
+
+  
   renderSquare(i) {
     return <Square value={i} />;
+  }
+
+  renderDisplay(i) {
+    return <Display />;
   }
 
   render() {
     return (
       <div>
         <div className="display-container">
-          
+          {this.renderDisplay()}
         </div>
         <div className="button-container">
           <div className="row">

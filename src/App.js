@@ -1,43 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 class Display extends React.Component {
-
   render() {
     return (
-      <h1>Yow</h1>
+      <h1>{this.props.value}</h1>
     );
   };
 };
 
 class Square extends React.Component {
-  state = {
-    value: this.props.value,
-    expression: []
-  }
-
-  handleClick = () => {
-    this.state.expression.push(this.state.value);
-  }
-
   render() {
     return (
-      <button className={'square ' + this.state.value} onClick={this.handleClick}>
-        {this.state.value}
+      <button 
+        className={'square ' + this.props.value} 
+        onClick={() => this.props.onClick()}
+      >
+        {this.props.value}
       </button>
     );
   };
 };
 
 class Main extends React.Component {
-
-  
-  renderSquare(i) {
-    return <Square value={i} />;
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "0",
+      displayValue: null,
+    };
   }
 
-  renderDisplay(i) {
-    return <Display />;
+  handleClick(i) {
+    this.setState( { displayValue: i });
+  }
+
+  renderSquare(i) {
+    return <Square value={i} onClick={() => this.handleClick(i)}/>;
+  }
+
+  renderDisplay() {
+    return <Display value={this.state.displayValue} />;
   }
 
   render() {
@@ -66,7 +69,7 @@ class Main extends React.Component {
             {this.renderSquare('x')}
           </div>
           <div className="row">
-            {this.renderSquare('Clear')}
+            {this.renderSquare('C')}
             {this.renderSquare(0)}
             {this.renderSquare('=')}
             {this.renderSquare('÷')}

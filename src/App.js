@@ -35,10 +35,31 @@ function Square (props) {
 function Main () {
   const [ value, setValue ] = useState('');
   const [ display, setDisplay ] = useState('');
+  const [ sign, setSign ] = useState('');
  
+  function checkSign(i) {
+    const symbolArray = ['+', '-', 'x', '÷', '=', 'C'];
+
+    symbolArray.map( (item) => {
+      if (i == '=' && value !== '') {
+        console.log(eval(value))
+      }
+      else if (typeof(i) == 'string') {
+        setSign(i);
+        setDisplay('');
+        return true;
+      }
+      else {
+        setDisplay(display + i);
+        return false;
+      }
+    });
+  }
+
   function handleClick(i) {
-    setDisplay(display + i);
     setValue(value + i);
+
+    checkSign(i);
   }
 
   function renderSquare(i) {
@@ -51,8 +72,10 @@ function Main () {
 
   return (
     <div className="wrapper">
-      <div className="display-container">
-        {renderDisplay()}
+      <div className="card">
+        <div className="card-body">
+          {renderDisplay()}
+        </div>
       </div>
       <div className="button-container">
         <div className="row">

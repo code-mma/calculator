@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import {evaluate} from 'mathjs';
 
 function Display (props) {
   return (
@@ -33,44 +34,34 @@ function Square (props) {
 };
 
 function Main () {
-  const [ value, setValue ] = useState('');
+  const [ digits, setDigits ] = useState([]);
   const [ display, setDisplay ] = useState('');
-  const [ sign, setSign ] = useState('');
- 
-  function checkSign(i) {
-    const symbolArray = ['+', '-', 'x', '÷', '=', 'C'];
 
-    symbolArray.map( (item) => {
-      if (i == '=' && value !== '') {
-        setDisplay(eval(value));
-      }
-      else if (i == 'C') {
-        setSign('');
-        setDisplay('');
-        setValue('');
-        return true;
-      }
-      else if (typeof(i) == 'string') {
-        setSign(i);
-        setDisplay('');
-        return true;
-      }
-      else {
-        setDisplay(display + i);
-        return false;
-      }
-    });
-  }
-
-  function handleClick(i) {
+  function signModifier(i) {
     if (i == 'x') {
       i = '*';
     }
     else if (i == '÷') {
       i = '/';
     }
-    setValue(value + i);
-    checkSign(i);
+  }
+
+  function handleClick(i) {
+    if (typeof(i) === 'number') {
+      setDisplay(display + i);
+    }
+    else if (i === '=') {
+      digits.push(display)
+      setDisplay(evaluate(digits));
+    }
+    else if (i === 'C') {
+      setDisplay('');
+      setDigits([]);
+    }
+    else {
+      setDigits([...digits, display, i])
+      setDisplay('');
+    }  
   }
 
   function renderSquare(i) {
@@ -80,7 +71,7 @@ function Main () {
   function renderDisplay() {
     return <Display value={display} />;
   }
-
+  
   return (
     <div className="wrapper">
       <div className="card">

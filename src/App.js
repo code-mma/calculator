@@ -44,6 +44,12 @@ function Main () {
       if (i == '=' && value !== '') {
         setDisplay(eval(value));
       }
+      else if (i == 'C') {
+        setSign('');
+        setDisplay('');
+        setValue('');
+        return true;
+      }
       else if (typeof(i) == 'string') {
         setSign(i);
         setDisplay('');

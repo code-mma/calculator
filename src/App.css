@@ -13,8 +13,9 @@ body {
 }
 
 .card {
-  height: 60px;
-  width: 240px;
+  font-size: 20px;
+  height: 200px;
+  width: 432px;
 }
 
 h1 {
@@ -36,11 +37,11 @@ h1 {
 
 .square {
   float: left;
-  font-size: 24px;
+  font-size: 42px;
   font-weight: bold;
   line-height: 34px;
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   margin: 5px;
   padding: 0;
   text-align: center;

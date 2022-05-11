@@ -42,7 +42,7 @@ function Main () {
 
     symbolArray.map( (item) => {
       if (i == '=' && value !== '') {
-        console.log(eval(value))
+        setDisplay(eval(value));
       }
       else if (typeof(i) == 'string') {
         setSign(i);
@@ -57,8 +57,13 @@ function Main () {
   }
 
   function handleClick(i) {
+    if (i == 'x') {
+      i = '*';
+    }
+    else if (i == '÷') {
+      i = '/';
+    }
     setValue(value + i);
-
     checkSign(i);
   }
 

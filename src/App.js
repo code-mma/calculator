@@ -1,100 +1,87 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
-class Display extends React.Component {
-  render() {
-    return (
-      <h1>{this.props.value}</h1>
-    );
-  };
+function Display (props) {
+  return (
+    <h1>{props.value}</h1>
+  );  
 };
 
-class Square extends React.Component {
+function Square (props) {
 
-  checkButtonType = () => {
-    if (this.props.value == 'C') {
+  let checkButtonType = () => {
+    if (props.value == 'C') {
       return 'danger';
     }
-    else if (this.props.value == '=') {
+    else if (props.value == '=') {
       return 'success';
     }
-    else if (typeof(this.props.value) == 'number') {
+    else if (typeof(props.value) == 'number') {
       return 'primary';
     }
     else return 'warning';
   };
 
-  render() {
-    return (
-      <button 
-        type="button"
-        className={'square btn btn-' + this.checkButtonType() + ' ' + this.props.value} 
-        onClick={() => this.props.onClick()}>
-          {this.props.value}
-      </button>
-    );
-  };
+  return (
+    <button 
+      type="button"
+      className={'square btn btn-' + checkButtonType() + ' ' + props.value} 
+      onClick={() => props.onClick()}>
+        {props.value}
+    </button>
+  );  
 };
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-      displayValue: null,
-    };
+function Main () {
+  const [ value, setValue ] = useState('');
+  const [ display, setDisplay ] = useState('');
+ 
+  function handleClick(i) {
+    setDisplay(display + i);
+    setValue(value + i);
   }
 
-  handleClick(i) {
-    this.setState( { displayValue: this.state.displayValue + i });
-    this.setState( { value: i });
+  function renderSquare(i) {
+    return <Square value={i} onClick={() => handleClick(i)}/>;
   }
 
-  
-
-  renderSquare(i) {
-    return <Square value={i} onClick={() => this.handleClick(i)}/>;
+  function renderDisplay() {
+    return <Display value={display} />;
   }
 
-  renderDisplay() {
-    return <Display value={this.state.displayValue} />;
-  }
-
-  render() {
-    return (
-      <div className="wrapper">
-        <div className="display-container">
-          {this.renderDisplay()}
+  return (
+    <div className="wrapper">
+      <div className="display-container">
+        {renderDisplay()}
+      </div>
+      <div className="button-container">
+        <div className="row">
+          {renderSquare(1)}
+          {renderSquare(2)}
+          {renderSquare(3)}
+          {renderSquare('+')}
         </div>
-        <div className="button-container">
-          <div className="row">
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-            {this.renderSquare(3)}
-            {this.renderSquare('+')}
-          </div>
-          <div className="row">
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-            {this.renderSquare(6)}
-            {this.renderSquare('-')}
-          </div>
-          <div className="row">
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-            {this.renderSquare(9)}
-            {this.renderSquare('x')}
-          </div>
-          <div className="row">
-            {this.renderSquare('C')}
-            {this.renderSquare(0)}
-            {this.renderSquare('=')}
-            {this.renderSquare('÷')}
-          </div>
+        <div className="row">
+          {renderSquare(4)}
+          {renderSquare(5)}
+          {renderSquare(6)}
+          {renderSquare('-')}
+        </div>
+        <div className="row">
+          {renderSquare(7)}
+          {renderSquare(8)}
+          {renderSquare(9)}
+          {renderSquare('x')}
+        </div>
+        <div className="row">
+          {renderSquare('C')}
+          {renderSquare(0)}
+          {renderSquare('=')}
+          {renderSquare('÷')}
         </div>
       </div>
-    );
-  };
+    </div>
+  );  
 };
 
 export default Main;

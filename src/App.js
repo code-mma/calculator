@@ -48,7 +48,6 @@ function Main () {
   }
 
   function handleClick(i) {
-
     if (typeof(i) === 'number') {
       setDisplay(display + i);
     }
@@ -65,7 +64,6 @@ function Main () {
       setDigits([...digits, display, signModifier(i)])
       setDisplay('');
     }  
-    
   }
   
 

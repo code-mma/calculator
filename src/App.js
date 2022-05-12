@@ -39,30 +39,35 @@ function Main () {
 
   function signModifier(i) {
     if (i == 'x') {
-      i = '*';
+      return '*';
     }
     else if (i == '÷') {
-      i = '/';
+      return '/';
     }
+    else return i;
   }
 
   function handleClick(i) {
+
     if (typeof(i) === 'number') {
       setDisplay(display + i);
     }
     else if (i === '=') {
-      digits.push(display)
-      setDisplay(evaluate(digits));
+      digits.push(display);
+      setDisplay(evaluate(digits.join('')));
     }
     else if (i === 'C') {
       setDisplay('');
       setDigits([]);
     }
     else {
-      setDigits([...digits, display, i])
+      ;
+      setDigits([...digits, display, signModifier(i)])
       setDisplay('');
     }  
+    
   }
+  
 
   function renderSquare(i) {
     return <Square value={i} onClick={() => handleClick(i)}/>;

@@ -60,7 +60,6 @@ function Main () {
       setDigits([]);
     }
     else {
-      ;
       setDigits([...digits, display, signModifier(i)])
       setDisplay('');
     }  

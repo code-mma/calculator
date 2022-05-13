@@ -4,7 +4,10 @@ import {evaluate} from 'mathjs';
 
 function Display (props) {
   return (
-    <h1>{props.value}</h1>
+    <div>
+      <h1>{props.value}</h1>
+      <p>{props.expression}</p>
+    </div>
   );  
 };
 
@@ -71,7 +74,7 @@ function Main () {
   }
 
   function renderDisplay() {
-    return <Display value={display} />;
+    return <Display value={display} expression={digits.join('')}/>;
   }
   
   return (

@@ -4,7 +4,7 @@ import {evaluate} from 'mathjs';
 
 function Display (props) {
   return (
-    <div>
+    <div className="card-body border border-dark">
       <h1>{props.value}</h1>
       <p>{props.expression}</p>
     </div>
@@ -78,11 +78,9 @@ function Main () {
   }
   
   return (
-    <div className="wrapper">
+    <div className="wrapper border border-dark bg-light">
       <div className="card">
-        <div className="card-body">
-          {renderDisplay()}
-        </div>
+        {renderDisplay()}
       </div>
       <div className="button-container">
         <div className="row">

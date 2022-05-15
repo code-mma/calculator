@@ -6,7 +6,7 @@ function Display (props) {
   return (
     <div className="card-body border border-dark">
       <h1>{props.value}</h1>
-      <p>{props.expression}</p>
+      <p>{props.expressionDisplay}</p>
     </div>
   );  
 };
@@ -37,10 +37,11 @@ function Square (props) {
 };
 
 function Main () {
-  const [ digits, setDigits ] = useState([]);
+  const [ expression, setExpression ] = useState([]);
   const [ display, setDisplay ] = useState('');
+  const [ computed, isComputed ] = useState(false);
 
-  function signModifier(i) {
+  function modifySymbol(i) {
     if (i == 'x') {
       return '*';
     }
@@ -52,20 +53,34 @@ function Main () {
 
   function handleClick(i) {
     if (typeof(i) === 'number') {
-      setDisplay(display + i);
+      if (computed == false) {
+        setDisplay(display + i);
+      }
     }
     else if (i === '=') {
-      digits.push(display);
-      setDisplay(evaluate(digits.join('')));
+      if (computed == false) {
+        expression.push(display);
+        setDisplay(evaluate(expression.join('')));
+        isComputed(true);
+      }
     }
     else if (i === 'C') {
       setDisplay('');
-      setDigits([]);
+      setExpression([]);
+      isComputed(false);
     }
     else {
-      setDigits([...digits, display, signModifier(i)])
-      setDisplay('');
+      if (computed == true) {
+        setExpression([display, modifySymbol(i)]);
+        isComputed(false);
+        setDisplay('');
+      }
+      else if (display !== '' && computed == false) {
+        setExpression([...expression, display, modifySymbol(i)])
+        setDisplay('');
+      }
     }  
+    console.log(expression);
   }
   
 
@@ -74,7 +89,7 @@ function Main () {
   }
 
   function renderDisplay() {
-    return <Display value={display} expression={digits.join('')}/>;
+    return <Display value={display} expressionDisplay={expression.join('')}/>;
   }
   
   return (

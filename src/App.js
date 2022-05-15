@@ -51,6 +51,7 @@ function Main () {
     else return i;
   }
 
+  
   function handleClick(i) {
     if (typeof(i) === 'number') {
       if (computed == false) {

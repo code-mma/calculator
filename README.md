@@ -44,7 +44,7 @@ From these exercises, I applied my novice knowledge in ReactJS and Bootstrap.
 
 ### Continued development
 
-This project is currently in progress. Functions are still at work.
+- Future development includes addition of decimal point input and exponents
 
 ### Useful resources
 

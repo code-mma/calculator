@@ -7,6 +7,7 @@ This is a basic calculator project using React and Bootstrap.
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
+  - [Links](#link)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -22,7 +23,11 @@ Create a simple calculator with basic functionalities.
 
 ### Screenshot
 
-![Final Output Screenshot](./images/screenshot.png)
+![Final Output Screenshot](./src/screenshot.png)
+
+### Links
+
+- GitHub Page - [Project Preview](https://code-mma.github.io/calculator/)
 
 ## My process
 
